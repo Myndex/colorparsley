@@ -23,7 +23,7 @@
 </p>
 
 # CoLoR pArSlEy
-## colorparsley()
+## colorParsley()
 
 ### A small color parsing utility with no dependencies
 

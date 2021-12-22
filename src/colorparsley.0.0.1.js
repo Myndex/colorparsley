@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /** @preserve
 /////    CoLoR PaRsLeY  🎨 🌿  a simple set of color parsing thingies!
-/////           Beta 0.0.1    Revision date: Dec 14, 2021
+/////           Beta 0.0.1    Revision date: Dec 21, 2021
 /////
 /////    Functions to parse color values and return array
 /////    Copyright © 2019-2022 by Andrew Somers. All Rights Reserved.
