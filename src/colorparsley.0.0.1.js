@@ -46,7 +46,7 @@ function colorParsley (colorIn) {
     } else if (typeof colorIn === 'number') {
         return [(colorIn & 0xFF0000) >> 16,
                 (colorIn & 0x00FF00) >> 8,
-                (colorIn & 0x0000FF), 255];
+                (colorIn & 0x0000FF), 1.0];
     } else if (typeof colorIn === 'object') {
        if (Array.isArray(colorIn)) {
           return colorIn;
@@ -57,7 +57,7 @@ function colorParsley (colorIn) {
                   colorIn.a]; // warning: make sure obj has r: g: b: a:
        }
     };
-    return -1; // return error -1
+    throw 'Err-1' // return error -1
 };
 
 
@@ -95,7 +95,7 @@ function parseString (colorString = '#abcdef') {
     
   let colorDefs = [
     {
-      rex: /^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/,
+      rex: /^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/i,
       parseStr: function (slices){ // rgb(0,0,0)
         return [
           parseInt(slices[1]),
@@ -105,8 +105,8 @@ function parseString (colorString = '#abcdef') {
       }
     },
     {
-      rex: /^rgbs\((\d{1,3}),(\d{1,3}),(\d{1,3})\),(\d{1,3})\)$/,
-      parseStr: function (slices){ // rgb(0,0,0)
+      rex: /^rgba\((\d{1,3}),(\d{1,3}),(\d{1,3})\),([01]?[0.1]\d{0,42})\)$/i,
+      parseStr: function (slices){ // rgba(123,123,123,1.0)
         return [
           parseInt(slices[1]),
           parseInt(slices[2]),
@@ -168,7 +168,7 @@ function parseString (colorString = '#abcdef') {
   let colorDefLen = colorDefs.length;
   let rexInput, slicesInput;
   let r,g,b;
-  let a = 255, i = 0;
+  let a = 1.0, i = 0;
 
     // Loop stops once valid color is found
   for (; i < colorDefLen; i++) {
@@ -182,7 +182,7 @@ function parseString (colorString = '#abcdef') {
       r = channel[0] & 0xFF;
       g = channel[1] & 0xFF;
       b = channel[2] & 0xFF;
-      (isNaN(channel[3])) ? a = 255 : a = channel[3] & 0xFF;
+      a = (isNaN(channel[3])) ? 1.0 : Math.min(Math.max(channel[3],0.0),1.0);
       
       return [r,g,b,a];
     }
