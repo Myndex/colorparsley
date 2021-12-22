@@ -2,7 +2,7 @@
   "name": "colorparsley",
   "version": "0.0.1",
   "description": "colorParsley() • a simple color parsing function with no dependencies",
-  "main": "./dist/colorparsley.min.js",
+  "main": "./dist/colorparsley.0.0.1.min.js",
   "keywords": [
     "color",
     "colour",
@@ -12,7 +12,7 @@
     "readability"
   ],
   "author": "Andrew Somers",
-  "license": "ADPL v3",
+  "license": "AGPL v3",
   "bugs": {
     "url": "https://github.com/Myndex/colorparsley/issues"
   },

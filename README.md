@@ -54,7 +54,7 @@ The following are the available input types for colorParsley(), HSL is not imple
 - **With Alpha** _(alpha is NOT presently calculated, and assumed as fully opaque)_
     - ` '#abcf' ` or ` 'abcf' ` (interpreted as ` 'aabbccff' `)
     - ` '#123456ff' ` or ` '123456ff' ` (hash is ignored)
-    - ` 'rgba(123, 45, 67,255)' `
+    - ` 'rgba(123, 45, 67,1.0)' `
 
 ### INPUT as NUMBER:
 - **As hex**
