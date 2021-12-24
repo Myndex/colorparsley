@@ -22,7 +22,7 @@
   </a> &nbsp;&nbsp;
 </p>
 
-# CoLoR pArSlEy
+# CoLoR🎨 PaRsLeY🌿
 ## colorParsley()
 
 ### A small color parsing utility with no dependencies
