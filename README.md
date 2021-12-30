@@ -102,6 +102,6 @@ No alpha parsing for _numbers_ in part as there are big and little endian issues
 
 ### The NEW CoLoR PaRsLeY REGEX:
 
-<img width="800" alt="the color parsley regex flowchart" src="./images/colorParsleyRegexFlowchart.png">
+<img width="800" alt="the color parsley regex flowchart" src="./images/colorParsleyRegexFlowchart.jpg">
 
 
