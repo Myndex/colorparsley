@@ -104,4 +104,5 @@ No alpha parsing for _numbers_ in part as there are big and little endian issues
 
 <img width="800" alt="the color parsley regex flowchart" src="./images/colorParsleyRegexFlowchart.jpg">
 
+Regex flow chart svg created at https://www.debuggex.com/
 
