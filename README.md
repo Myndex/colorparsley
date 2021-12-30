@@ -27,7 +27,7 @@
 
 ### A small color parsing utility with no dependencies
 
-Current Version: **0.0.2**_
+[Current Version:](./docs/versionHistory.md) **0.0.2**
 
 ColoR PaRsLeY is a spin off of the SAPC/APCA project. It is a lightweight but powerful tool for parsing color values out of various string types. It supports HEX, RGB INT, HTML & CSS Named Colors, and a variety of additional color models.
 

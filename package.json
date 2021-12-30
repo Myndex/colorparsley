@@ -1,7 +1,7 @@
 {
   "name": "colorparsley",
-  "version": "0.0.2",
-  "description": "colorParsley() • a simple color parsing function with no dependencies",
+  "version": "0.0.2b",
+  "description": "colorParsley() • a simple color parsing function with no dependencies. Takes various color strings, numbers, or objects, and turns them into simple arrays",
   "main": "./dist/colorparsley.0.0.2.min.js",
   "keywords": [
     "color",
