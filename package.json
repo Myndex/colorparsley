@@ -1,15 +1,22 @@
 {
   "name": "colorparsley",
-  "version": "0.0.2b",
-  "description": "colorParsley() • a simple color parsing function with no dependencies. Takes various color strings, numbers, or objects, and turns them into simple arrays",
-  "main": "./dist/colorparsley.0.0.2.min.js",
+  "version": "0.1.0",
+  "description": "colorParsley() • a lightweight yet versatile color parsing function with no dependencies. Takes various color strings, numbers, or objects, and turns them into simple arrays. Additional utilities such as colorToHex() and colorToRGB() included",
+  "main": "./dist/colorparsley.0.1.0.min.js",
   "keywords": [
     "color",
     "colour",
     "CSS",
     "contrast",
     "design tools",
-    "readability"
+    "string parsing",
+    "HSL",
+    "HWB",
+    "sRGB",
+    "RGB",
+    "RGB parsing",
+    "hex string",
+    "regex"
   ],
   "author": "Andrew Somers",
   "license": "AGPL v3",

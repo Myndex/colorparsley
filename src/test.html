@@ -1,6 +1,6 @@
 <!DOCTYPE html><head>
-<base lang="en-US" title="APCA TEST">
-<title>APCA TEST</title>
+<base lang="en-US" title="CoLoR PaRsLeY TEST">
+<title>CoLoR PaRsLeY TEST</title>
 </head>
 <body style="margin: 2em; font-family: sans-serif; font-size: 1.2em; background: #429; color:#eee;">
 <h1>CoLoR PaRsLeY Script Test</h1>
@@ -10,7 +10,7 @@
 <div id="test">Enable Javascript </div>
 </body>
 
-<script src="./colorparsley.0.0.2.js"></script>
+<script src="./colorparsley.0.1.0.js"></script>
 
 <script>
 
@@ -20,19 +20,28 @@ let outputText = document.getElementById('test');
 
 outputText.innerHTML = '<h3>TEST COLORS</h3>';
 
-outputText.innerHTML += '<p>Colors may be a hex string, a named color, an rgb(), or just a number</p> '
+outputText.innerHTML += '<p>Colors may be a hex string, a named color, an rgb(), or just a number</p>'
 
-let color1 = '#123456ff', color2 = 'aliceblue', color3 = 'rgb(123,200,120,88%)', color4 = 0x808080,
-    color5 = 'hsv(321,40%,98,.8)', color6 = 'aa', color7 = 'def';
+let colorObject = {r: 123, g: 77, b: 200, fred: 'hello', nothing: 0,};
 
-outputText.innerHTML +='<pre>color 1: ' + color1 + '         \t parsed: ' + colorParsley(color1)
-                     + ' <br>color 2: ' + color2 + '       \t parsed: ' + colorParsley(color2)
-                     + ' <br>color 3: ' + color3 + '  \t parsed: ' + colorParsley(color3)
-                     + ' <br>color 4: ' + color4 + '         \t parsed: ' + colorParsley(color4)
-                     + ' <br>color 5: ' + color5 + ' \t parsed: ' + colorParsley(color5)
-                     + ' <br>color 6: ' + color6 + '              \t parsed: ' + colorParsley(color6)
-                     + ' <br>color 7: ' + color7 + '              \t parsed: ' + colorParsley(color7)
-                     + ' <br>color nul: ' + 'hello' + '          \t parsed: ' + colorParsley('hello')
+let color1 = '#123456cc', color2 = 'aliceblue', color3 = 'rgb(170,187,205,1.0)', color4 = 0x808080,
+    color5 = 'hsl(111,22%,66%,.8)', color6 = '123,', color7 = 'def';
+
+outputText.innerHTML +='<pre style="tab-size: 38;">color 1: '
+                     + color1 + '  \t array: [' + colorParsley(color1) + ']'
+                     + ' <br>color 2: ' + color2 + '  \t array: [' + colorParsley(color2) + ']'
+                     + ' <br>color 3: ' + color3 + '  \t array: [' + colorParsley(color3) + ']'
+                     + ' <br>color 4: ' + color4 + '  \t array: [' + colorParsley(color4) + ']'
+                     + ' <br>color 5: ' + color5 + '  \t array: [' + colorParsley(color5) + ']'
+                     + ' <br>color 6: ' + color6 + '  \t array: [' + colorParsley(color6) + ']'
+                     + ' <br>color 7: ' + color7 + '  \t array: [' + colorParsley(color7) + ']'
+                     + ' <br>color 8: ' + 'hello' + '   \t array: [' + colorParsley('hello') + ']'
+                     + ' <br>color 9: ' + '#fa' + '   \t array: [' + colorParsley('#fa') + ']'
+                     + ' <br>colorObj: ' + colorObject + '   \t array: [' + colorParsley(colorObject) + ']'
+                     + ' <br>ToHex: ' + color3 + '   \t string: ' + colorToHex(colorParsley(color3)) 
+                     + ' <br>ToHex: ' + 'abc' + '   \t string: ' + colorToHex(colorParsley('abc')) 
+                     + ' <br>ToRGB: ' + color4 + '   \t string: ' + colorToRGB(colorParsley(color4)) 
+                     + ' <br>ToRGB: ' + 'abc' + '   \t string: ' + colorToRGB(colorParsley('abc')) 
                      ;
 </script>
 

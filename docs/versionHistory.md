@@ -3,8 +3,9 @@
 
 ### Version History
 
-Current Version: **0.0.2b**
+Current Version: **0.1.0**
 
+0.1.0 — (Jan 5, 2022) NEW! HWB and HSL now added! Revised the regex to improve validations, and to add hsl and hwb. Added string formatting utilities colorToHex() and colorToRGB(), updated docs, Added logo. Cleanup and maintenance.
 
 0.0.2b - documentation fix, added this version history file. No code changes.
 
