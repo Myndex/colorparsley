@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /** @preserve
 /////    CoLoR PaRsLeY  🎨 🌿  a simple set of color parsing thingies!
-/////           Beta 0.1.0   Revision date: Jan 5, 2022
+/////           Beta 0.1.1   Revision date: Jan 11, 2022
 /////
 /////    Functions to parse color values and return array
 /////    Copyright © 2019-2022 by Andrew Somers. All Rights Reserved.
@@ -23,8 +23,8 @@
 
 // ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
-// @output_file_name colorparsley.0.1.0.min.js
-// @code_url https://raw.githubusercontent.com/Myndex/colorparsley/master/src/colorparsley.0.1.0.js
+// @output_file_name colorparsley.0.1.1.min.js
+// @code_url https://raw.githubusercontent.com/Myndex/colorparsley/master/src/colorparsley.0.1.1.js
 // ==/ClosureCompiler==
 
 // 
@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-/////  BEGIN COLOR PARSLEY 0.1.0  BLOCK  \/////////////////////////////////////
+/////  BEGIN COLOR PARSLEY 0.1.1  BLOCK  \/////////////////////////////////////
 ////                                      \///////////////////////////////////
 ///                                        \/////////////////////////////////
 
@@ -105,7 +105,7 @@ function parseString (colorString = '#abcdef') {
 
   let retArray = [0,0,0,'',this.isValid,this.type];
 
-       // NEW regex parse  0.1.0
+       // NEW regex parse  0.1.1
       // See docs for breakdown of regex pattern
   let colorRex = {
     rex: /^(?:rgba?|)\(?\s?(?:(25[0-5]|2[0-4]\d|1?\d{1,2})(?:, ?| ))(?:(25[0-5]|2[0-4]\d|1?\d{1,2})(?:, ?| )(?:(25[0-5]|2[0-4]\d|1?\d{1,2}))(?:(?:,| ?\/)\s?(?:(100%|\d?\d%|[01]?\.\d{1,22}|[01])))? ?\)?)?(?!\S)|^(?:#|0x|)(?:(?:([\da-f])([\da-f])([\da-f])([\da-f])?)(?!\S)|(?:([\da-f]{2})(?:([\da-f]{2})([\da-f]{2})([\da-f]{2})?)?))(?!\S)|^(?:([^r\d\W][a-z]{2,5})\(?\s?((?:\d{1,2}\.|\.|)\d+%?)(?:, ?| )((?:\d{1,2}\.|\.|)\d+%?)(?:, ?| )((?:\d{1,2}\.|\.|)\d+%?)(?:(?:,| ?\/) ?((?:\d{1,2}\.|\.|)\d+%?))?)\s?\)?/i,
@@ -151,7 +151,7 @@ function parseString (colorString = '#abcdef') {
           base = 16;
           divisor = 15.0;
           retArray[3] =
-            parseInt(slices[sliceLast]+slices[sliceLast],base) / divisor ;
+            parseInt(slices[sliceLast],base) / divisor ;
         case 7:
           base = 16;
           for (i = 0; i < 3; i++) {
@@ -330,6 +330,6 @@ module.exports = { colorParsley, colorToHex, colorToRGB };
 
 ///\                                      //////////////////////////////////////
 ////\                                    //////////////////////////////////////
-/////\  END COLOR PARSLEY 0.1.0  BLOCK  //////////////////////////////////////
+/////\  END COLOR PARSLEY 0.1.1  BLOCK  //////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 

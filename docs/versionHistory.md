@@ -3,7 +3,9 @@
 
 ### Version History
 
-Current Version: **0.1.0**
+Current Version: **0.1.1**
+
+0.1.1 — (Jan 11, 2022) minor, bug fix for the alpha of a 4 character hex string such as #2228 — the 8 (alpha) was not being divided correctly to be in the range 0.0-1.0. (discovered as APCA now supports alpha)
 
 0.1.0 — (Jan 5, 2022) NEW! HWB and HSL now added! Revised the regex to improve validations, and to add hsl and hwb. Added string formatting utilities colorToHex() and colorToRGB(), updated docs, Added logo. Cleanup and maintenance.
 
