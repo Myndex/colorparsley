@@ -325,7 +325,12 @@ function hwbToRgb(hue, white, black) {  // CSS4 reference implementation
 /////////////////////////////////////////////////////////////////////////////
 
 
+
+//* // MOD.EXP COMMENT SWITCH FOR LOCAL TESTING /////
+
 module.exports = { colorParsley, colorToHex, colorToRGB };
+
+// */  ///// END COMMENT SWITCH /////
 
 
 ///\                                      //////////////////////////////////////
