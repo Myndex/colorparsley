@@ -82,14 +82,14 @@ The following are the available input types for colorParsley(). **All are automa
 - "More better" regex validations and input type steering
     - Each RGB value must be 0-255. Alpha is 0-1 or 0% to 100%
     - Alpha values with percent symbol are converted to 0.0-1.0
-- regex parsing for lch, hsv, etc.
+- regex parsing for lch, hsv, luv, etc.
     - first 3-5 characters defines the color type
     - minimal verification and maximum flexibility for different color space and color model types.
     - Supports INT, float, and percentage with % symbol.
     - All values with percent symbol are converted to 0.0-1.0
     - NOTE: at this time, these are not processed into an rgba array and
     - other than percentage, values are left as is, and
-    - the color type is returned as the fifth element in the array
+    - the color type is returned as the sixth element in the array
 
 ### Sending as a NUMBER:
 - **As hex**
@@ -110,12 +110,14 @@ No alpha parsing for _numbers_
     - `[255,255,255,1.0,true,'sRGB']`
 
 ### Future
+Passthrough values to be added to the array to be returned. 
 - An optional 7th array element is the gamma or TRC (default sRGB or per table)
     - `[322,0.7,0.5,1.0,'hsv',2.2]`
-- An optional 8th array element is the whitepoint (default D65)
+- An optional 8th array element is the bitdepth (default 8bit per channel)
+    - `[0.95,1.1,0.76,1.0,'RGB','1.0','32.0f','D65']`
+    - 
+- An optional 9th array element is the whitepoint (default D65)
     - `[123,123,123,1.0,'ProPhoto','1.8','D50']`
-- An optional 9th array element is the bitdepth (default 8bit per channel)
-    - `[0.95,1.1,0.76,1.0,'RGB','1.0','D65', 32]`
 
 Thoughts? Discuss at the repo!
 
