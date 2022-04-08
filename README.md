@@ -39,6 +39,9 @@ ColoR PaRsLeY returns a simple four element array of RGBA INT for HEX or RGB INT
 
 ## QuickStart
 
+_NPM Install:_   ` npm i colorparsley `
+
+
 ### *Usage:*
 "colorParsley()" send it a string, it returns an rgba INT array:
 
