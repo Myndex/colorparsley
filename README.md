@@ -31,7 +31,7 @@
 
 ### A lightweight but versatile color parsing utility with no dependencies
 
-[Current Version:](./docs/versionHistory.md) **0.1.1**
+[Current Version:](./docs/versionHistory.md) **0.1.4**
 
 ColoR PaRsLeY is a spin off of the SAPC/APCA project. It is a lightweight but powerful tool for parsing color values out of various string types. It supports HEX, RGB INT, HTML & CSS Named Colors, and a variety of additional color models.
 
@@ -68,14 +68,18 @@ The following are the available input types for colorParsley(). **All are automa
     - ` '#abcf' ` or ` 'abcf' ` (interpreted as ` 'aabbccff' `)
     - ` '#123456ff' ` or ` '123456ff' ` (hash is ignored)
     - ` 'rgba(123, 45, 67,1.0)' `
+    - ` 'color(srgb 0.765 0.89 0.556 / 1)' `
 
 ### NEW:
 
+- CSS 4 compatible changes:
+    - INTs changes to NUMBER (i.e. 123 can now be 123.9586)
+    - Added support for `color(srgb 0.765 0.89 0.556 / 1)`
 - HSL and HWB now!
-    - hsl(310,40%,60%, 1.0) (alpha optional)
+    - `hsl(310,40%,60%, 1.0)` (alpha optional)
 - NEW export utilities for hex and rgb strings
-    - colorToHex(colorParsley('rgb(170,187,204)')) returns 'abc'
-    - colorToRGB(colorParsley('abc')) returns 'rgb(170,187,204)'
+    - `colorToHex(colorParsley('rgb(170,187,204)'))` returns `abc`
+    - `colorToRGB(colorParsley('abc'))` returns `rgb(170,187,204)`
 - Better error handling—now errors return [0,0,0,'',false,'&lt;error message&gt;']
 - Send it an object containing {r: g: b:} or {red: green: blue:}
 - Send it a simple array [r,g,b,a]

@@ -1,9 +1,9 @@
 # CoLoR🎨 PaRsLeY🌿
-## colorParsley()
+## ` colorParsley('colorString') `
 
 ### Version History
 
-Current Version: **0.1.2**
+Current Version: **0.1.4**
 
 0.1.4 - (April 15 2022) Massive change for the regex string, to support CSS 4 tags. Now the new color() function is supported in the regex, and numbers are no longer constrained to INTs, so rgb(123.6564, 45.13, 199.45) is perfectly legal, per CSS4.
 
