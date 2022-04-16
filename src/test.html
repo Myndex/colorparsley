@@ -3,10 +3,10 @@
 <title>CoLoR PaRsLeY TEST</title>
 </head>
 <body style="margin: 2em; font-family: sans-serif; font-size: 1.2em; background: #429; color:#eee;">
-<h1>CoLoR PaRsLeY Script Test</h1>
+<h1>CoLoR PaRsLeY Script Test 0.1.4</h1>
 <h3>Usage:</h3>
 
-<code>colorParsley()</code> takes anything and parses it to an RGB color array</p>
+<code>colorParsley()</code> takes any string or int and parses it to an RGB color array if it's parsable. Returns black [0,0,0,,false,parsleyError] if it can't be parsed.</p>
 <div id="test">Enable Javascript </div>
 </body>
 
@@ -33,25 +33,26 @@ outputText.innerHTML += '<p>Colors may be a hex string, a named color, an rgb(),
 
 let colorObject = {r: 123, g: 77, b: 200, fred: 'hello', nothing: 0,};
 
-let color1 = '#123456cc', color2 = 'aliceblue', color3 = 'rgb(170,187,205,1.0)', color4 = 0x808080,
-    color5 = 'hsl(111,22%,66%,.8)', color6 = '123,', color7 = 'def';
+let color1 = '#123456cc', color2 = 'aliceblue', color3 = 'rgb(170.0, 187.0, 205.0,0.7)', color4 = 0x808080,
+    color5 = 'hsl(112,22.8%,66.5%,0.8)', color6 = '123,', color7 = 'def', color10 = 'color("display-p3" 0.234 0.876 0.656 / 40%)';
 
 outputText.innerHTML +='<pre style="tab-size: 38;">color 1: '
-                     + color1 + '  \t array: [' + colorParsley(color1) + ']'
-                     + ' <br>color 2: ' + color2 + '  \t array: [' + colorParsley(color2) + ']'
-                     + ' <br>color 3: ' + color3 + '  \t array: [' + colorParsley(color3) + ']'
-                     + ' <br>color 4: ' + color4 + '  \t array: [' + colorParsley(color4) + ']'
-                     + ' <br>color 5: ' + color5 + '  \t array: [' + colorParsley(color5) + ']'
-                     + ' <br>color 6: ' + color6 + '  \t array: [' + colorParsley(color6) + ']'
-                     + ' <br>color 7: ' + color7 + '  \t array: [' + colorParsley(color7) + ']'
-                     + ' <br>color 8: ' + 'hello' + '   \t array: [' + colorParsley('hello') + ']'
-                     + ' <br>color 9: ' + '#fa' + '   \t array: [' + colorParsley('#fa') + ']'
-                     + ' <br>colorObj: ' + colorObject + '   \t array: [' + colorParsley(colorObject) + ']'
-                     + ' <br>ToHex: ' + color3 + '   \t string: ' + colorToHex(colorParsley(color3)) 
-                     + ' <br>ToHex: ' + 'abc' + '   \t string: ' + colorToHex(colorParsley('abc')) 
-                     + ' <br>ToRGB: ' + color4 + '   \t string: ' + colorToRGB(colorParsley(color4)) 
-                     + ' <br>ToRGB: ' + 'abc' + '   \t string: ' + colorToRGB(colorParsley('abc')) 
-                     ;
+	 + color1 + '  \t array: [' + colorParsley(color1) + ']'
+	 + ' <br>color 2: ' + color2 + '  \t array: [' + colorParsley(color2) + ']'
+	 + ' <br>color 3: ' + color3 + '\t array: [' + colorParsley(color3) + ']'
+	 + ' <br>color 4: ' + color4 + '(0x808080)  \t array: [' + colorParsley(color4) + ']'
+	 + ' <br>color 5: ' + color5 + '  \t array: [' + colorParsley(color5) + ']'
+	 + ' <br>color 6: ' + color6 + '  \t array: [' + colorParsley(color6) + ']'
+	 + ' <br>color 7: ' + color7 + '  \t array: [' + colorParsley(color7) + ']'
+	 + ' <br>color 8: ' + 'hello' + '   \t array: [' + colorParsley('hello') + ']'
+	 + ' <br>color 9: ' + '#fa' + '   \t array: [' + colorParsley('#fa') + ']'
+	 + ' <br>color10: <br>' + color10 + ' array: [' + colorParsley(color10) + ']'
+	 + ' <br>colorObj: ' + colorObject + '   \t array: [' + colorParsley(colorObject) + ']'
+	 + ' <br>ToHex: ' + color3 + '\t string: ' + colorToHex(colorParsley(color3)) 
+	 + ' <br>ToHex: ' + 'abc' + '   \t string: ' + colorToHex(colorParsley('abc')) 
+	 + ' <br>ToRGB: ' + color4 + '   \t string: ' + colorToRGB(colorParsley(color4)) 
+	 + ' <br>ToRGB: ' + 'abc' + '   \t string: ' + colorToRGB(colorParsley('abc')) 
+	 ;
 </script>
 
 

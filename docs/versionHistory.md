@@ -5,6 +5,10 @@
 
 Current Version: **0.1.2**
 
+0.1.4 - (April 15 2022) Massive change for the regex string, to support CSS 4 tags. Now the new color() function is supported in the regex, and numbers are no longer constrained to INTs, so rgb(123.6564, 45.13, 199.45) is perfectly legal, per CSS4.
+
+0.1.3 - Minor changes (not published)
+
 0.1.2 - (Jan 15, 2022) minor improvements to the regex string (ends with $ now) and documentation.
 
 0.1.1 — (Jan 11, 2022) minor, bug fix for the alpha of a 4 character hex string such as #2228 — the 8 (alpha) was not being divided correctly to be in the range 0.0-1.0. (discovered as APCA now supports alpha)
