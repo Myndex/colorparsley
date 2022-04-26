@@ -1,7 +1,7 @@
 <p align="center">
 
   <a href="https://npmjs.org/package/colorparsley">
-    <img src="https://badgen.net/npm/v/colorparsley?color=3000c0&icon=npm&cache=300" alt="version" />
+    <img src="https://badgen.net/npm/v/colorparsley?color=3000c0&icon=npm" alt="version" />
   </a> &nbsp;&nbsp;
   <a href="https://github.com/Myndex/colorparsley/src/">
     <img src="https://badgen.net/badge/JS/Vanilla/889900" alt="plain vanilla JS" />
