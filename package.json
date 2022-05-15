@@ -27,9 +27,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Myndex/colorparsley.git"
-  },  
+  },
   "homepage": "https://www.myndex.com/APCA/",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava test/index.js"
+  },
+  "devDependencies": {
+    "ava": "^4.2.0"
   }
 }
