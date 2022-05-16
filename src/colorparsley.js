@@ -40,8 +40,7 @@
 
 /////  ƒ  colorParsley()  ///////////////////////////////////////////////////
 
-//export
-function colorParsley (colorIn) {
+export function colorParsley (colorIn) {
 
     if (typeof colorIn === 'string') {
         return parseString(colorIn);
@@ -91,8 +90,8 @@ function parseString (colorString = '#abcdef') {
     colorString = colorString.replace(/[^\w,.#%()\/ -]/g,'');
     colorString = colorString.toLowerCase();   // set lowercase
     
-    this.isValid = false; // validation flag, in array element [4]
-    this.type = 'sRGB'; // Default colorspace flag in element [5]
+    let isValid = false; // validation flag, in array element [4]
+    let type = 'sRGB'; // Default colorspace flag in element [5]
     
         // test for named color before iterating array (is optimization needed?)
     if (colorString.match(/^(?:(?!rgb|l.h|hs|col|\d|#).{0,4})(?=[g-z])/)) {
@@ -134,7 +133,7 @@ function parseString (colorString = '#abcdef') {
     };   // end of named colors section
 
 
-  let retArray = [0,0,0,'',this.isValid,this.type];
+  let retArray = [0,0,0,'',isValid,type];
 
 
        // NEW regex parse  0.1.4
@@ -162,7 +161,7 @@ function parseString (colorString = '#abcdef') {
 										parseFloat(alpha);
 				
 
-      for (k=1; k < slices.length; k++) { //  determine first and last element
+      for (let k=1; k < slices.length; k++) { //  determine first and last element
         if (slices[k]) {
           slicePos = (slicePos) ? slicePos : k;
           sliceLast = k;
@@ -180,7 +179,7 @@ function parseString (colorString = '#abcdef') {
           retArray[3] = parseInt(slices[sliceLast],base) / divisor ;
         case 3:
           base = 16;
-          for (i = 0; i < 3; i++) {
+          for (let i = 0; i < 3; i++) {
             retArray[i] = parseInt(slices[slicePos+i] + slices[slicePos+i],base);
           }
         break;
@@ -200,7 +199,7 @@ function parseString (colorString = '#abcdef') {
         case 7:
           base = 16;
         case 11:
-          for (i = 0; i < 3; i++) {
+          for (let i = 0; i < 3; i++) {
             retArray[i] = (base == 10) ? parseFloat(slices[slicePos+i]) :
           							     parseInt(slices[slicePos+i],base);
           }
@@ -209,7 +208,7 @@ function parseString (colorString = '#abcdef') {
         case 18:  // This is for color() CSS 4
           retArray[5] = slices[15];
 
-          for (i = 0; i < 3; i++) {
+          for (let i = 0; i < 3; i++) {
             slicePos++;
             retArray[i] = (slices[slicePos].match(/%/g)) ?
                 parseFloat(slices[slicePos]) / 100.0 :
@@ -220,7 +219,7 @@ function parseString (colorString = '#abcdef') {
         case 22:  //  This is for the "wild west" section
         retArray[5] = slices[slicePos];
 
-        for (i = 0; i < 3; i++ ) {
+        for (let i = 0; i < 3; i++ ) {
           slicePos++;
           retArray[i] = (slices[slicePos]) ? (slices[slicePos].match(/%/g)) ?
               parseFloat(slices[slicePos]) / 100.0 :
@@ -275,16 +274,16 @@ function parseString (colorString = '#abcdef') {
     let slicesProc = colorRex.rex.exec(colorString);
 
     if (slicesProc) { // Error catch
-      this.isValid = true;
+      isValid = true;
       colorRex.parsley(slicesProc);
       retArray[4] = true; // set the isValid flag
       
       return retArray;
       
     } else {
-      this.isValid = false;
+      isValid = false;
       console.log('colorParsley error: unable to parse string')
-      return [0,0,0,0,this.isValid,'parsleyError']  // throw 'InvalidString'
+      return [0,0,0,0,isValid,'parsleyError']  // throw 'InvalidString'
     }
 };
 
@@ -302,8 +301,7 @@ function parseString (colorString = '#abcdef') {
     // returns hex string, 3,4,6, or 8 chars if that was entered, no #
     // If alpha is 1 or empty, no alpha is returned i.e. abcf returns abc
     
-//export
-function colorToHex (rgba = [0,0,0,''],allow3 = true) {
+export function colorToHex (rgba = [0,0,0,''],allow3 = true) {
     let R = rgba[0].toString(16).padStart(2, '0');
     let G = rgba[1].toString(16).padStart(2, '0');
     let B = rgba[2].toString(16).padStart(2, '0');
@@ -329,8 +327,7 @@ function colorToHex (rgba = [0,0,0,''],allow3 = true) {
     // RGBAstr — returns rgb() or rgba() INT value string (0-255) no spaces
     // If alpha is 1 or empty, no alpha is returned 
     
-//export
-function colorToRGB (rgba = [0,0,0,'']) {
+export function colorToRGB (rgba = [0,0,0,'']) {
         return ( rgba[3] == '' || rgba[3] == 1) ? 
         'rgb(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ')' :
         'rgba(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ',' + rgba[3] + ')';
@@ -378,14 +375,6 @@ function hwbToRgb(hue, white, black) {  // CSS4 reference implementation
 
 /////\  END UTILITIES  ///////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
-
-
-
-//* // MOD.EXP COMMENT SWITCH FOR LOCAL TESTING /////
-
-module.exports = { colorParsley, colorToHex, colorToRGB };
-
-// */  ///// END COMMENT SWITCH /////
 
 
 ///\                                      //////////////////////////////////////
