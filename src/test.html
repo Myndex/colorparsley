@@ -3,7 +3,7 @@
 <title>CoLoR PaRsLeY TEST</title>
 </head>
 <body style="margin: 2em; font-family: sans-serif; font-size: 1.2em; background: #429; color:#eee;">
-<h1>CoLoR PaRsLeY Script Test 0.1.5</h1>
+<h1>CoLoR PaRsLeY Script Test 0.1.6</h1>
 <h3>Usage:</h3>
 
 <code>colorParsley()</code> takes any string or int and parses it to an RGB color array if it's parsable. Returns black [0,0,0,,false,parsleyError] if it can't be parsed.</p>
@@ -32,14 +32,19 @@ outputText.innerHTML +='<pre style="tab-size: 38;">color 1: '
 	 + ' <br>color 5: ' + color5 + '  \t array: [' + colorParsley(color5) + ']'
 	 + ' <br>color 6: ' + color6 + '  \t array: [' + colorParsley(color6) + ']'
 	 + ' <br>color 7: ' + color7 + '  \t array: [' + colorParsley(color7) + ']'
-	 + ' <br>color 8: ' + 'hello' + '   \t array: [' + colorParsley('hello') + ']'
-	 + ' <br>color 9: ' + '#fa' + '   \t array: [' + colorParsley('#fa') + ']'
+	 + ' <br>color 8: ' + '#fa' + '   \t array: [' + colorParsley('#fa') + ']'
+	 + ' <br>color 9: ' + '60%' + '   \t array: [' + colorParsley('60%') + ']'
+	 + ' <br>color 9b: ' + 'rgb(77%,87%,46%)' + '   \t array: [' + colorParsley('rgb(77%,87%,46%)') + ']'
+	 + ' <br>color 9c: ' + 'deeppink' + '   \t array: [' + colorParsley('deeppink') + ']'
+	 + ' <br>color 9cc: ' + '#ff1493' + '   \t array: [' + colorParsley('#ff1493') + ']'
 	 + ' <br>color10: <br> ' + color10 + ' array: [' + colorParsley(color10) + ']'
 	 + ' <br>colorObj: ' + colorObject + '   \t array: [' + colorParsley(colorObject) + ']'
 	 + ' <br>ToHex: ' + color3 + '\t string: ' + colorToHex(colorParsley(color3)) 
 	 + ' <br>ToHex: ' + 'ABC' + '   \t string: ' + colorToHex(colorParsley('abc')) 
 	 + ' <br>ToRGB: ' + color4 + '   \t string: ' + colorToRGB(colorParsley(color4)) 
 	 + ' <br>ToRGB: ' + 'abc' + '   \t string: ' + colorToRGB(colorParsley('abc')) 
+	 + ' <br><br>Fail: ' + 'rgb(123,88%,79)' + '   \t array: [' + colorParsley('rgb(123,88%,79)') + ']'
+	 + ' <br>Fail: ' + 'hello' + '   \t array: [' + colorParsley('hello') + ']'
 	 ;
 </script>
 

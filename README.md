@@ -31,7 +31,7 @@
 
 ### A lightweight but versatile color parsing utility with no dependencies
 
-[Current Version:](./docs/versionHistory.md) **0.1.5**
+[Current Version:](./docs/versionHistory.md) **0.1.6**
 
 ColoR PaRsLeY is a spin off of the SAPC/APCA project. It is a lightweight but powerful tool for parsing color values out of various string types. It supports HEX, RGB INT, HTML & CSS Named Colors, and a variety of additional color models.
 
@@ -64,16 +64,21 @@ The following are the available input types for colorParsley(). **All are automa
     - ` '#abcdef' ` or ` 'abcdef' ` (hash is ignored)
     - ` 'rgb(123, 45, 67)' ` or ` '123,45,67' `
     - ` 'aquamarine' ` or ` 'magenta' ` (full CSS4 named colors list)
+    - ` 'color(srgb 0.765 0.89 0.556)' `
 - **With Alpha**
     - ` '#abcf' ` or ` 'abcf' ` (interpreted as ` 'aabbccff' `)
     - ` '#123456ff' ` or ` '123456ff' ` (hash is ignored)
-    - ` 'rgba(123, 45, 67,1.0)' `
+    - ` 'rgba(123, 45, 67, 1.0)' `
     - ` 'color(srgb 0.765 0.89 0.556 / 1)' `
+- **Greyscale Shorthand**
+    - ` '#ab' ` or ` 'ab' ` (interpreted as if` 'ababab' `)
+    - ` '123,' `(interpreted as if` 'rgb(123, 123, 123)' `)
+    - ` '87%' `(interpreted as if ` 'rgb(87%, 87%, 87%)' = [221.85,221.85,221.85]`)
 
 ### NEW:
 
 - CSS 4 compatible changes:
-    - INTs changes to NUMBER (i.e. 123 can now be 123.9586)
+    - INTs changed to NUMBER (i.e. 123 can now be 123.9586)
     - Added support for `color(srgb 0.765 0.89 0.556 / 1)`
 - HSL and HWB now!
     - `hsl(310,40%,60%, 1.0)` (alpha optional)
@@ -86,9 +91,12 @@ The following are the available input types for colorParsley(). **All are automa
 - Greyscale shortcuts!
     - For HEX, just two digits: a7 means `#a7a7a7`
     - For INT, 1-3 digits followed by a comma: 123, means `rgb(123,123,123)`
+    - For PCT, 1-3 digits followed by a `%`: 87% means `rgb(87%,87%,87%)`
+        - and is output as ` [221.85,221.85,221.85,'',...] `
 - "More better" regex validations and input type steering
-    - Each RGB value must be 0-255. Alpha is 0-1 or 0% to 100%
+    - Each RGB value must be 0.0-255.0. Alpha is 0.0-1 or 0% to 100%
     - Alpha values with percent symbol are converted to 0.0-1.0
+    - RGB Color values in percent are converted to 0.0-255.0    
 - regex parsing for lch, hsv, luv, etc.
     - first 3-5 characters defines the color type
     - minimal verification and maximum flexibility for different color space and color model types.
@@ -107,7 +115,7 @@ The following are the available input types for colorParsley(). **All are automa
 No alpha parsing for _numbers_
 
 ### RETURNS
-- All hex and rgb() inputs return a 6 element rgba 8bit INT array
+- All hex and rgb() inputs return a 6 element rgba NUMBER array
     - `[255,255,255,1.0,true,'sRGB']`
 - A value input with a percentage symbol % is divided by 100.0
 - Values are assumed to be 8bit unless a decimal point is found.
@@ -167,7 +175,6 @@ Then in your input field, use ` onkeyup =` (or other appropriate event)
             onclick="this.select();"
             onkeyup="entryKeys(this.value,event);">
 ```
-
 
 ### The NEW CoLoR PaRsLeY REGEX:
 

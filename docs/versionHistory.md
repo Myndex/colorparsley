@@ -3,8 +3,11 @@
 
 ### Version History
 
-Current Version: **0.1.5**
+Current Version: **0.1.6**
 
+0.1.6 - (May 16 2022) Bug fix: corrected the regex bug, github issue #5 (thanks Rasmus!)
+Fixed: the rgb() percentage implementation was incomplete, it works now
+Features: also altered the exports, fixed the test.html file, and more.
 
 0.1.5 - (April 25 2022) Bug fix: corrected the "upper case" bug, github issue #2
 

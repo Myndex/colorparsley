@@ -1,10 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 /** @preserve
-/////    CoLoR PaRsLeY  🎨 🌿  a simple set of color parsing thingies!
-/////           Beta 0.1.5   Revision date: April 25, 2022
+/////    CoLoR PaRsLeY  a simple set of color parsing thingies!
+/////           Beta 0.1.6   Revision date: May 16, 2022
 /////
 /////    Functions to parse color values and return array
-/////    Copyright © 2019-2022 by Andrew Somers. All Rights Reserved.
+/////    Copyright (c) 2019-2022 by Andrew Somers. All Rights Reserved.
 /////    LICENSE: AGPL 3
 /////    CONTACT: Please use the ISSUES or DISCUSSIONS tab at:
 /////    https://github.com/Myndex/colorparsley/
@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-/////  BEGIN COLOR PARSLEY 0.1.5  BLOCK  \/////////////////////////////////////
+/////  BEGIN COLOR PARSLEY 0.1.6  BLOCK  \/////////////////////////////////////
 ////                                      \///////////////////////////////////
 ///                                        \/////////////////////////////////
 
@@ -92,13 +92,14 @@ function parseString (colorString = '#abcdef') {
     
     let isValid = false; // validation flag, in array element [4]
     let type = 'sRGB'; // Default colorspace flag in element [5]
-    
-        // test for named color before iterating array (is optimization needed?)
+    let retArray = [0,0,0,'',isValid,type]; // init the return array
+
+        // test for named color before iterating array
     if (colorString.match(/^(?:(?!rgb|l.h|hs|col|\d|#).{0,4})(?=[g-z])/)) {
 
       ///// CSS4 NAMED COLORS plus a bonus set of GREYS and GRAYS /////////////
 
-      // See if name is matched and overwrite the input
+           // If name is matched, parse and return the color values
       let namedColors = {
       gray0:'000000',gray1:'111111',gray2:'222222',gray3:'333333',gray4:'444444',gray5:'555555',gray6:'666666',gray7:'777777',gray8:'888888',gray9:'999999',graya:'aaaaaa',grayb:'bbbbbb',grayc:'cccccc',grayd:'dddddd',graye:'eeeeee',grayf:'ffffff',midgray:'a0a0a0',
       grey0:'000000',grey1:'111111',grey2:'222222',grey3:'333333',grey4:'444444',grey5:'555555',grey6:'666666',grey7:'777777',grey8:'888888',grey9:'999999',greya:'aaaaaa',greyb:'bbbbbb',greyc:'cccccc',greyd:'dddddd',greye:'eeeeee',greyf:'ffffff',midgrey:'a0a0a0',
@@ -126,20 +127,30 @@ function parseString (colorString = '#abcdef') {
 
       for (let key in namedColors) {
         if (colorString == key) {
-            colorString = namedColors[key];
-            break;
+
+          let hexRex = {  
+            rex: /^([\da-f]{2})([\da-f]{2})([\da-f]{2})$/,
+            sprig: function (slices) {
+              for (let i = 0; i < 3; i++) {
+                retArray[i] = parseInt(slices[i+1],16);
+              }
+              return true;
+            }
+          };
+
+          let hexProc = hexRex.rex.exec(namedColors[key]);
+          retArray[4] = isValid = hexRex.sprig(hexProc);
+
+          return retArray;
         }
       }
     };   // end of named colors section
 
 
-  let retArray = [0,0,0,'',isValid,type];
-
-
-       // NEW regex parse  0.1.4
+       // NEW regex  0.1.6
       // See docs for breakdown of regex pattern
   let colorRex = {
-    rex: /(?:^(?:#|0x|)(?:(?:([\da-f])([\da-f])([\da-f])([\da-f])?)(?!\S)|(?:([\da-f]{2})(?:([\da-f]{2})([\da-f]{2})([\da-f]{2})?)?))|(?:^(?:(?:rgba?|)\(? ?(?:(?:(?:(255|(?:25[0-4]|2[0-4]\d|1?\d{1,2})(?:\.\d{1,24})?)))(?:, ?| )(?:(?:(255|(?:25[0-4]|2[0-4]\d|1?\d{1,2})(?:\.\d{1,24})?)(?:, ?| )(255|(?:25[0-4]|2[0-4]\d|1?\d{1,2})(?:\.\d{1,24})?))?)|(100%|\d{1,2}(?:\.\d{1,24})?%)(?:, ?| )(?:(100%|\d{1,2}(?:\.\d{1,24})?%)(?:, ?| )(100%|\d{1,2}(?:\.\d{1,24})?%))))|^(?:color\((srgb|srgb-linear|display-p3|a98-rgb|prophoto-rgb|rec2020|xyz|xyz-d50|xyz-d65) (?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])) (?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])) (?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])))|^(?:((?:r(?!gb)|c(?!olor)|[abd-qs-z]|[^\d\W])[a-z]{2,5})\( ?((?:\d{0,3}\.|)\d{1,24}%?)(?:, ?| )((?:\d{0,3}\.|)\d{1,24}%?)(?:, ?| )((?:\d{0,3}\.|)\d{1,24}%?)))(?:(?:,| \/) ?(?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])))?(?:\)| |))(?!\S) ?$/,
+    rex: /(?:^(?:#|0x|)(?:(?:([\da-f])([\da-f])([\da-f])([\da-f])?)(?!\S)|(?:([\da-f]{2})(?:([\da-f]{2})([\da-f]{2})([\da-f]{2})?)?))|(?:(?:^(?:rgba?|)\(? ?(?:(?:(?:(255|(?:25[0-4]|2[0-4]\d|1?\d{1,2})(?:\.\d{1,24})?)))(?:,[^\S]*$|(?:(?:, ?| )(255|(?:25[0-4]|2[0-4]\d|1?\d{1,2})(?:\.\d{1,24})?)(?:, ?| )(255|(?:25[0-4]|2[0-4]\d|1?\d{1,2})(?:\.\d{1,24})?)))|(100%|\d{1,2}(?:\.\d{1,24})?%)(?:,?[^\S]*$|(?:(?:, ?| )(?:(100%|\d{1,2}(?:\.\d{1,24})?%)(?:, ?| )(100%|\d{1,2}(?:\.\d{1,24})?%)))))|^(?:color\((srgb|srgb-linear|display-p3|a98-rgb|prophoto-rgb|rec2020|xyz|xyz-d50|xyz-d65) (?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])) (?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])) (?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])))|^(?:((?:r(?!gb)|c(?!olor)|[abd-qs-z])[a-z]{2,5})\( ?((?:\d{0,3}\.|)\d{1,24}%?)(?:, ?| )((?:\d{0,3}\.|)\d{1,24}%?)(?:, ?| )((?:\d{0,3}\.|)\d{1,24}%?))))(?:(?:,| \/| ) ?(?:(100%|\d{1,2}(?:\.\d{1,24})?%|[0 ]\.\d{1,24}|[01])))?(?:\)| |))[^\S]*$/,
 
 
     parsley: function (slices) {
@@ -148,18 +159,19 @@ function parseString (colorString = '#abcdef') {
       let sliceLast = 0;
       let base = 10;
       let divisor = 100.0;
+      let convertPct = 2.55;
       let alpha = '1';
 
 
-			if (slices[23]) {
-				alpha = slices[23];
-				delete slices[23];
-			}
+      if (slices[23]) {
+        alpha = slices[23];
+        delete slices[23];
+      }
 
-			retArray[3] = (alpha.match(/%/g)) ?
-										parseFloat(alpha) / divisor :
-										parseFloat(alpha);
-				
+      retArray[3] = (alpha.match(/%/g)) ?
+                    parseFloat(alpha) / divisor :
+                    parseFloat(alpha);
+        
 
       for (let k=1; k < slices.length; k++) { //  determine first and last element
         if (slices[k]) {
@@ -168,7 +180,6 @@ function parseString (colorString = '#abcdef') {
 // console.log(slicePos + ' pos ' + sliceLast);
         }
       }
-
 // console.log(slices);
 
       switch (sliceLast) {
@@ -192,6 +203,11 @@ function parseString (colorString = '#abcdef') {
                            parseInt(slices[sliceLast],base);
         break;
 
+        case 12:  // allows single percentage to become grey
+          retArray[0] = retArray[1] = retArray[2] = 
+             parseFloat(slices[sliceLast]) * convertPct;
+        break;
+
         case 8:  // These are the main parsings for hex and rgb()
           base = 16;
           divisor = 255.0;
@@ -201,17 +217,23 @@ function parseString (colorString = '#abcdef') {
         case 11:
           for (let i = 0; i < 3; i++) {
             retArray[i] = (base == 10) ? parseFloat(slices[slicePos+i]) :
-          							     parseInt(slices[slicePos+i],base);
+                             parseInt(slices[slicePos+i],base);
           }
         break;
 
+        case 14: //  rgb() percentage
+          for (let i = 0; i < 3; i++) {
+            retArray[i] = parseFloat(slices[slicePos+i]) * convertPct;
+          }
+        break;
+        
         case 18:  // This is for color() CSS 4
           retArray[5] = slices[15];
 
           for (let i = 0; i < 3; i++) {
             slicePos++;
             retArray[i] = (slices[slicePos].match(/%/g)) ?
-                parseFloat(slices[slicePos]) / 100.0 :
+                parseFloat(slices[slicePos]) / divisor :
                 parseFloat(slices[slicePos]);  
            }
         break;
@@ -222,7 +244,7 @@ function parseString (colorString = '#abcdef') {
         for (let i = 0; i < 3; i++ ) {
           slicePos++;
           retArray[i] = (slices[slicePos]) ? (slices[slicePos].match(/%/g)) ?
-              parseFloat(slices[slicePos]) / 100.0 :
+              parseFloat(slices[slicePos]) / divisor :
               parseFloat(slices[slicePos]) : 0.0 ;
         }
 
@@ -266,6 +288,7 @@ function parseString (colorString = '#abcdef') {
         }
         break;
       }
+      return true;
     }  // close parsley subfunction
   };  // close colorRex obj
 
@@ -274,12 +297,11 @@ function parseString (colorString = '#abcdef') {
     let slicesProc = colorRex.rex.exec(colorString);
 
     if (slicesProc) { // Error catch
-      isValid = true;
-      colorRex.parsley(slicesProc);
-      retArray[4] = true; // set the isValid flag
       
+      retArray[4] = isValid = colorRex.parsley(slicesProc); // set the isValid flag
+
       return retArray;
-      
+
     } else {
       isValid = false;
       console.log('colorParsley error: unable to parse string')
@@ -334,7 +356,7 @@ export function colorToRGB (rgba = [0,0,0,'']) {
     }
 
 
-
+/* // hslToRgb() hwbToRgb() shown here only as a reference
 
 /////  ƒ  hslToRgb()  ///////////////////////////////////////////////////
 
@@ -372,7 +394,7 @@ function hwbToRgb(hue, white, black) {  // CSS4 reference implementation
     }
     return rgb; // returns  0.0 - 1.0
 };
-
+// */
 /////\  END UTILITIES  ///////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
