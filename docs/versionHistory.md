@@ -1,9 +1,20 @@
 # CoLoR🎨 PaRsLeY🌿
-## ` colorParsley('colorString') `
+```javascript
+let rgbaArray = colorParsley('colorString') `
+```
+## _Version History_
 
-### Version History
+### Current Version: **0.1.7**
 
-Current Version: **0.1.6**
+0.1.7 - (June 2 2022) 
+
+**NEW in 0.1.7: output array will now *always* have an alpha value, with the default as 1 for inputs that lack an alpha. "Failed" parsings will still return an alpha of 0.**
+
+NEW: this version adds automated tests (thanks Rasmus!) at the command line, ` npm test ` will run two scripts. The first set of tests check that all the parsing is done correctly, and the second set of tests in the "reject.js" script checks that bad inputs fail gracefully.
+
+Otherwise, the same 0.1.6 regex & parsley
+
+### Past Versions:
 
 0.1.6 - (May 16 2022) Bug fix: corrected the regex bug, github issue #5 (thanks Rasmus!)
 Fixed: the rgb() percentage implementation was incomplete, it works now

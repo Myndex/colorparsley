@@ -47,13 +47,13 @@ export function colorParsley (colorIn) {
     } else if (typeof colorIn === 'number') {
         return [(colorIn & 0xFF0000) >> 16,
                 (colorIn & 0x00FF00) >> 8,
-                (colorIn & 0x0000FF), '', true, 'unknown'];
+                (colorIn & 0x0000FF), 1, true, 'unknown'];
     } else if (typeof colorIn === 'object') {
        if (Array.isArray(colorIn)) {
           return colorIn;
        } else if (!isNaN(colorIn.r) || !isNaN(colorIn.red)){
               // validate object & return array
-         let objArray = [0,0,0,'',false,'unknown'];
+         let objArray = [0,0,0,0,false,'unknown'];
              // takes object with r g b or red green blue etc...
          objArray[0] = (colorIn.r)?colorIn.r:(colorIn.red)?
                         colorIn.red:false;
@@ -62,7 +62,7 @@ export function colorParsley (colorIn) {
          objArray[2] = (colorIn.b)?colorIn.b:(colorIn.blue)?
                         colorIn.blue:false;
          objArray[3] = (colorIn.a)?colorIn.a:(colorIn.alpha)?
-                        colorIn.alpha:'';
+                        colorIn.alpha:1;
          objArray[4] = (objArray[0]&&objArray[1]&&objArray[2]) ? true : false;
          objArray[5] =
             (colorIn.space)?colorIn.space:
@@ -92,7 +92,7 @@ function parseString (colorString = '#abcdef') {
     
     let isValid = false; // validation flag, in array element [4]
     let type = 'sRGB'; // Default colorspace flag in element [5]
-    let retArray = [0,0,0,'',isValid,type]; // init the return array
+    let retArray = [0,0,0,0,isValid,type]; // init the return array
 
         // test for named color before iterating array
     if (colorString.match(/^(?:(?!rgb|l.h|hs|col|\d|#).{0,4})(?=[g-z])/)) {
@@ -134,6 +134,7 @@ function parseString (colorString = '#abcdef') {
               for (let i = 0; i < 3; i++) {
                 retArray[i] = parseInt(slices[i+1],16);
               }
+              retArray[3] = 1;
               return true;
             }
           };

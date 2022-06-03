@@ -1,6 +1,6 @@
 {
   "name": "colorparsley",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "description": "colorParsley() • a lightweight yet versatile color parsing function with no dependencies. Takes various color strings, numbers, or objects, and turns them into simple arrays. Additional utilities such as colorToHex() and colorToRGB() included",
   "main": "./src/colorparsley.js",
@@ -30,9 +30,9 @@
   },
   "homepage": "https://www.myndex.com/APCA/",
   "scripts": {
-    "test": "ava test/index.js"
+    "test": "ava test/index.js; ava test/reject.js"
   },
   "devDependencies": {
-    "ava": "^4.2.0"
+    "ava": "^4.3.0"
   }
 }

@@ -45,6 +45,7 @@ outputText.innerHTML +='<pre style="tab-size: 38;">color 1: '
 	 + ' <br>ToRGB: ' + 'abc' + '   \t string: ' + colorToRGB(colorParsley('abc')) 
 	 + ' <br><br>Fail: ' + 'rgb(123,88%,79)' + '   \t array: [' + colorParsley('rgb(123,88%,79)') + ']'
 	 + ' <br>Fail: ' + 'hello' + '   \t array: [' + colorParsley('hello') + ']'
+	 + ' <br>Fail: ' + '{fred: 1, bob: 20, grace: 9,}' + '\t array: [' + colorParsley({fred: 1, bob: 20, alice: 9,}) + ']'
 	 ;
 </script>
 

@@ -31,7 +31,9 @@
 
 ### A lightweight but versatile color parsing utility with no dependencies
 
-[Current Version:](./docs/versionHistory.md) **0.1.6**
+[Current Version:](./docs/versionHistory.md) **0.1.7**
+
+**NEW in 0.1.7: output array will now *always* have an alpha value, with the default as 1 for inputs that lack an alpha. "Failed" parsings will return an alpha of 0.**
 
 ColoR PaRsLeY is a spin off of the SAPC/APCA project. It is a lightweight but powerful tool for parsing color values out of various string types. It supports HEX, RGB INT, HTML & CSS Named Colors, and a variety of additional color models.
 
@@ -49,11 +51,11 @@ _NPM Install:_   ` npm i colorparsley `
     let textColor = colorParsley('#111111');
     let backgroundColor = colorParsley('rgb(123,23,233,1.0)');
 
-    console.log(textColor); // [17,17,17,1.0,true,'sRGB']
-    console.log(backgroundColor); // [123,23,233,1.0,true,'sRGB']
+    console.log(textColor); // [17,17,17,1,true,'sRGB']
+    console.log(backgroundColor); // [123,23,233,1,true,'sRGB']
     
     // STRUCTURE
-    returnedArray = [Rint,Gint,Bint,Afloat,isValidBool,colorspaceString]
+    returnedArray = [R,G,B,A,isValidBool,colorspaceString]
 ```
 
 The following are the available input types for colorParsley(). **All are automatically recognized:**
@@ -81,7 +83,7 @@ The following are the available input types for colorParsley(). **All are automa
     - INTs changed to NUMBER (i.e. 123 can now be 123.9586)
     - Added support for `color(srgb 0.765 0.89 0.556 / 1)`
 - HSL and HWB now!
-    - `hsl(310,40%,60%, 1.0)` (alpha optional)
+    - `hsl(310,40%,60%, 1)` (alpha optional)
 - NEW export utilities for hex and rgb strings
     - `colorToHex(colorParsley('rgb(170,187,204)'))` returns `abc`
     - `colorToRGB(colorParsley('abc'))` returns `rgb(170,187,204)`
@@ -116,23 +118,23 @@ No alpha parsing for _numbers_
 
 ### RETURNS
 - All hex and rgb() inputs return a 6 element rgba NUMBER array
-    - `[255,255,255,1.0,true,'sRGB']`
+    - `[255,255,255,1,true,'sRGB']`
 - A value input with a percentage symbol % is divided by 100.0
 - Values are assumed to be 8bit unless a decimal point is found.
 
 - The "isValid" boolean is the 5th element in the return array.
 - The 6th array element is colorspace or model (i.e. hsl) (default sRGB)
-    - `[255,255,255,1.0,true,'sRGB']`
+    - `[255,255,255,1,true,'sRGB']`
 
 ### Future
 Passthrough values to be added to the array to be returned. 
 - An optional 7th array element is the gamma or TRC (default sRGB or per table)
-    - `[322,0.7,0.5,1.0,'hsv',2.2]`
+    - `[322,0.7,0.5,1,'hsv',2.2]`
 - An optional 8th array element is the bitdepth (default 8bit per channel)
-    - `[0.95,1.1,0.76,1.0,'RGB','1.0','32.0f','D65']`
+    - `[0.95,1.1,0.76,1,'RGB','1.0','32.0f','D65']`
     - 
 - An optional 9th array element is the whitepoint (default D65)
-    - `[123,123,123,1.0,'ProPhoto','1.8','D50']`
+    - `[123,123,123,1,'ProPhoto','1.8','D50']`
 
 Thoughts? Discuss at the repo!
 
