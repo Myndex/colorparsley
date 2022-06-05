@@ -1,10 +1,10 @@
 import test from 'ava';
 
-import { colorParsley } from '../src/colorparsley.js';
+import { colorParsley, colorToHex, colorToRGB  } from '../src/colorparsley.js';
 
 console.log('BEGIN')
-test.todo("Testing parsley for chewability\n")
 
+test.todo("Testing parsley for chewability\n")
 
 test('Hex values with alpha', (t) => {
     t.deepEqual([18, 52, 86, 0.8, true, 'sRGB'], colorParsley('#123456cc'));
@@ -39,7 +39,7 @@ test('Three digit hex value string', (t) => {
 });
 
 test('color() string with color space', (t) => {
-    t.deepEqual([ 0.234, 0.876, 0.656, 0.4, true, 'display-p3' ], colorParsley('color("display-p3" 0.234 0.876 0.656 / 40%)'));
+    t.deepEqual([ 59.67,223.38,167.28,0.8, true, 'display-p3' ], colorParsley('color("display-p3" 0.234 0.876 0.656 / 0.8)'));
 });
 
 test('Object with color keys', (t) => {
@@ -61,3 +61,14 @@ test('Three digit hex string - uppercase', (t) => {
 test('Three digit hex string - lowercase', (t) => {
     t.deepEqual([ 170, 187, 204, 1, true, 'sRGB' ], colorParsley('abc'));
 });
+
+test('Four digit hex string back to 4 digit hex', (t) => {
+    t.deepEqual('abcd', colorToHex(colorParsley('#abcd')));
+});
+
+test('color() string with color space to rgb()', (t) => {
+    t.deepEqual('rgba(60,223,167,0.8)', colorToRGB(colorParsley('color("display-p3" 0.234 0.876 0.656 / 0.8)')));
+});
+
+
+

@@ -3,7 +3,7 @@
 <title>CoLoR PaRsLeY TEST</title>
 </head>
 <body style="margin: 2em; font-family: sans-serif; font-size: 1.2em; background: #429; color:#eee;">
-<h1>CoLoR PaRsLeY Script Test 0.1.6</h1>
+<h1>CoLoR PaRsLeY Script Test 0.1.8</h1>
 <h3>Usage:</h3>
 
 <code>colorParsley()</code> takes any string or int and parses it to an RGB color array if it's parsable. Returns black [0,0,0,,false,parsleyError] if it can't be parsed.</p>
@@ -21,8 +21,7 @@ outputText.innerHTML += '<p>Colors may be a hex string, a named color, an rgb(),
 
 let colorObject = {r: 123, g: 77, b: 200, fred: 'hello', nothing: 0,};
 
-let color0='rgba(0,0,0,0)', color1 = '#123456cc', color2 = 'cadetblue', color3 = 'rgb(170.0, 187.0, 205.0,0.7)', color4 = 0x808080,
-    color5 = 'hsl(112,22.8%,66.5%,0.8)', color6 = '123,', color7 = 'DEF', color10 = 'color("display-p3" 0.234 0.876 0.656 / 40%)';
+let color0='rgba(0,0,0,0)', color1 = '#123456cc', color2 = 'cadetblue', color3 = 'rgb(170.0, 187.0, 205.0,0.7)', color4 = 0x808080, color5 = 'hsl(112,22.8%,66.5%,0.8)', color6 = '123,', color7 = 'DEF', color10 = 'color("display-p3" 0.234 0.876 0.656 / 0.8)', color11 = '#abcd', color12 = 'rgba(123.5,74.2,255 0.8)', color14 = 'rgba(170.2,187.3,203.7,0.8)';
 
 outputText.innerHTML +='<pre style="tab-size: 38;">color 0: '
 	 + color0 + '  \t array: [' + colorParsley(color0) + ']'
@@ -42,6 +41,12 @@ outputText.innerHTML +='<pre style="tab-size: 38;">color 0: '
 	 + ' <br>colorObj: ' + colorObject + '   \t array: [' + colorParsley(colorObject) + ']'
 	 + ' <br>ToHex: ' + color3 + '\t string: ' + colorToHex(colorParsley(color3)) 
 	 + ' <br>ToHex: ' + 'ABC' + '   \t string: ' + colorToHex(colorParsley('abc')) 
+	 + ' <br>ToHEX: ' + color10 + '   string: ' + colorToHex(colorParsley(color10))
+	 + ' <br>ToHEX: ' + color11 + '   \t string: ' + colorToHex(colorParsley(color11))
+	 + ' <br>ToHEX: ' + color12 + '   \t string: ' + colorToHex(colorParsley(color12))
+	 + ' <br>ToHEX: ' + color14 + '   \t string: ' + colorToHex(colorParsley(color14))
+	 + ' <br>ToRGB: ' + color10 + '  string: ' + colorToRGB(colorParsley(color10))
+	 + ' <br>ToRGB: ' + color11 + '   \t string: ' + colorToRGB(colorParsley(color11))
 	 + ' <br>ToRGB: ' + color4 + '   \t string: ' + colorToRGB(colorParsley(color4)) 
 	 + ' <br>ToRGB: ' + 'abc' + '   \t string: ' + colorToRGB(colorParsley('abc')) 
 	 + ' <br><br>Fail: ' + 'rgb(123,88%,79)' + '   \t array: [' + colorParsley('rgb(123,88%,79)') + ']'

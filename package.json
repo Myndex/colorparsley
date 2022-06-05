@@ -1,8 +1,8 @@
 {
   "name": "colorparsley",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "module",
-  "description": "colorParsley() • a lightweight yet versatile color parsing function with no dependencies. Takes various color strings, numbers, or objects, and turns them into simple arrays. Additional utilities such as colorToHex() and colorToRGB() included",
+  "description": "colorParsley() • a lightweight yet versatile color parsing function with no dependencies. Takes various color strings, numbers, or objects, and turns them into simple arrays. Bonus utilities colorToHex() and colorToRGB() included",
   "main": "./src/colorparsley.js",
   "keywords": [
     "color",

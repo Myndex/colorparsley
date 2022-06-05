@@ -4,7 +4,16 @@ let rgbaArray = colorParsley('colorString') `
 ```
 ## _Version History_
 
-### Current Version: **0.1.7**
+### Current Version: **0.1.8**
+
+0.1.8 - (June 4 2022) 
+
+- When input is a CSS color(), now returns RGB multiplied by 255 for consistency 
+- colorToHex() now rounds before converting (fixes issue)
+- colorToRGB() now rounds by default, but rounding can be set to false
+- Added some tests
+
+### Past Versions:
 
 0.1.7 - (June 2 2022) 
 
@@ -13,8 +22,6 @@ let rgbaArray = colorParsley('colorString') `
 NEW: this version adds automated tests (thanks Rasmus!) at the command line, ` npm test ` will run two scripts. The first set of tests check that all the parsing is done correctly, and the second set of tests in the "reject.js" script checks that bad inputs fail gracefully.
 
 Otherwise, the same 0.1.6 regex & parsley
-
-### Past Versions:
 
 0.1.6 - (May 16 2022) Bug fix: corrected the regex bug, github issue #5 (thanks Rasmus!)
 Fixed: the rgb() percentage implementation was incomplete, it works now

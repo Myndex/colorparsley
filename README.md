@@ -31,8 +31,9 @@
 
 ### A lightweight but versatile color parsing utility with no dependencies
 
-[Current Version:](./docs/versionHistory.md) **0.1.7**
+[Current Version:](./docs/versionHistory.md) **0.1.8**
 
+**NEW in 0.1.8: colorToHex and colorToRGB now round by default, and input strings using CSS color() have output array values multiplied by 255 for consistency with all other arrays..**
 **NEW in 0.1.7: output array will now *always* have an alpha value, with the default as 1 for inputs that lack an alpha. "Failed" parsings will return an alpha of 0.**
 
 ColoR PaRsLeY is a spin off of the SAPC/APCA project. It is a lightweight but powerful tool for parsing color values out of various string types. It supports HEX, RGB INT, HTML & CSS Named Colors, and a variety of additional color models.
@@ -183,4 +184,50 @@ Then in your input field, use ` onkeyup =` (or other appropriate event)
 <img width="800" alt="the color parsley regex flowchart" src="./images/colorParsleyRegexFlowchart.png">
 
 Regex flow chart svg created at https://www.debuggex.com/
+
+
+### Reference code from CSS 
+
+```javascript
+
+//* // hslToRgb() hwbToRgb() from CSS shown here only as a reference
+
+/////  ƒ  hslToRgb()  ///////////////////////////////////////////////////
+
+    //// Unused, built into the string parser, here for reference
+function hslToRgb (hue, sat, light) { // CSS4 reference implementation
+    hue = hue % 360;
+    if (hue < 0) { hue += 360; }
+    sat /= 100.0;
+    light /= 100.0;
+    function f(n) {
+        let k = (n + hue/30) % 12;
+        let a = sat * Math.min(light, 1 - light);
+        return light - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+    }
+    return [f(0), f(8), f(4)]; // returns  0.0 - 1.0
+};
+
+
+/////  ƒ  hwbToRgb()  ///////////////////////////////////////////////////
+
+    //// Unused, built into the string parser, here for reference
+function hwbToRgb(hue, white, black) {  // CSS4 reference implementation
+    white /= 100.0;
+    black /= 100.0;
+    if (white + black >= 1) {
+        let gray = white / (white + black);
+    return [gray, gray, gray];
+    }
+    let rgb = hslToRgb(hue, 100.0, 50.0);
+    for (let i = 0; i < 3; i++) {
+        rgb[i] *= (1 - white - black);
+        rgb[i] += white;
+    }
+    return rgb; // returns  0.0 - 1.0
+};
+// */
+```
+
+
 
