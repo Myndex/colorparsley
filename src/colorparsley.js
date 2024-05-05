@@ -330,9 +330,9 @@ export function colorToHex (rgba = [0,0,0,''], allow3 = true) {
 
          // this if returns a 3 character hex if possible - aabbcc becomes abc
     if ( allow3 &&
-         parseInt(A, 16) % 17 == 0 &&
-         parseInt(A, 16) % 17 == 0 &&
-         parseInt(A, 16) % 17 == 0 &&
+         parseInt(R, 16) % 17 == 0 &&
+         parseInt(G, 16) % 17 == 0 &&
+         parseInt(B, 16) % 17 == 0 &&
          (parseInt(A, 16) % 17 == 0 || A == '')
          ) {
          return R.charAt(0) + G.charAt(0) + B.charAt(0) + A.charAt(0);
